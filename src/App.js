@@ -24,14 +24,17 @@ appId: "1:87283938323:web:806257d756742ea1323be6",
 
 
 const options = {};
-
+const authProvider = FirebaseAuthProvider(config, options);
 const  dataProvider = FirebaseDataProvider(config, options);
 //const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
 
 function App() {
   return (
-    <Admin dataProvider={dataProvider}>
+    <Admin dataProvider={dataProvider} authProvider={authProvider}>
         <Resource name="purchases" list={ListGuesser} />
+        <Resource name="items" list={ListGuesser} />
+        <Resource name="users" list={ListGuesser} />
+
     </Admin>
   );
 }
