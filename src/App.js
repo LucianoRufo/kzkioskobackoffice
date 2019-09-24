@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Admin, Resource, UserMenu, AppBar, Layout } from "react-admin";
+import { Admin, Resource, UserMenu, AppBar, Layout, ShowGuesser } from "react-admin";
 import { ItemList } from "./components/ItemList";
 import { ItemEdit } from "./components/ItemEdit";
 import { ItemCreate } from "./components/ItemCreate";
@@ -8,6 +8,7 @@ import { PurchaseList } from "./components/PurchaseList";
 import { PurchaseCreate } from "./components/PurchaseCreate";
 import { PurchaseEdit } from "./components/PurchaseEdit";
 import { UserList } from './components/UserList'
+import { UserEdit } from './components/UserEdit'
 import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
@@ -71,6 +72,7 @@ function App() {
       <Resource
         name="users"
         list={UserList}
+        edit={UserEdit}
         />
     </Admin>
   );
