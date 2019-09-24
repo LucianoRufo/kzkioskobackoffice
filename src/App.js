@@ -7,7 +7,7 @@ import { ItemCreate } from "./components/ItemCreate";
 import { PurchaseList } from "./components/PurchaseList";
 import { PurchaseCreate } from "./components/PurchaseCreate";
 import { PurchaseEdit } from "./components/PurchaseEdit";
-
+import { UserList } from './components/UserList'
 import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
@@ -68,6 +68,10 @@ function App() {
         edit={ItemEdit}
         create={ItemCreate}
       />
+      <Resource
+        name="users"
+        list={UserList}
+        />
     </Admin>
   );
 }

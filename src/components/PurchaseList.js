@@ -8,9 +8,9 @@ export const PurchaseList = props => (
       <ReferenceField source="item_id" reference="items">
         <TextField source="name" />
       </ReferenceField>
-      <TextField source="price" />
+      <TextField source="cost" />
       <ReferenceField source="user_id" reference="users">
-        <TextField source="id" />
+        <TextField source="name" />
       </ReferenceField>
     </Datagrid>
   </List>
