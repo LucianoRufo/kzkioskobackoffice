@@ -1,10 +1,14 @@
-import React from "react";
-import "./App.css";
-import { Admin, Resource } from "react-admin";
-import { PurchaseList } from "./components/PurchaseList";
-import { PurchaseEdit } from "./components/PurchaseEdit";
-import { ItemList } from "./components/ItemList";
-import { ItemEdit } from "./components/ItemEdit";
+import React from 'react';
+import './App.css';
+import { Admin, Resource, ListGuesser, EditGuesser, ShowGuesser, UserMenu, AppBar, Layout } from 'react-admin';
+import { UserList } from './components/UserList';
+import { ItemList } from './components/ItemList';
+import { PurchaseList } from './components/PurchaseList'
+import { PurchaseCreate } from './components/PurchaseCreate'
+import { PurchaseEdit } from './components/PurchaseEdit'
+
+import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
 
 import {
   FirebaseAuthProvider,
@@ -23,10 +27,33 @@ const config = {
 };
 
 const options = {};
+
 const authProvider = FirebaseAuthProvider(config, options);
 const dataProvider = FirebaseDataProvider(config, options);
 const firebaseRealtime = FirebaseRealTimeSaga(dataProvider);
 
+//Bar with profile
+const myCustomIconStyle = {
+  avatar: {
+      height: 30,
+      width: 30,
+  },
+};
+const MyCustomIcon = withStyles(myCustomIconStyle)(
+  ({ classes }) => (
+      <Avatar
+          className={classes.avatar}
+          src=""
+      />
+  )
+);
+
+const MyUserMenu = props => (<UserMenu {...props} icon={<MyCustomIcon />} />);
+const MyAppBar = props => <AppBar {...props} userMenu={<MyUserMenu />} />;
+const MyLayout = props => <Layout {...props} appBar={MyAppBar} />;
+
+
+//<Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon}/>
 function App() {
   return (
     <Admin
@@ -34,7 +61,7 @@ function App() {
       authProvider={authProvider}
       customSagas={[firebaseRealtime]}
     >
-      <Resource name="purchases" list={PurchaseList} edit={PurchaseEdit} />
+      <Resource name="purchases" list={PurchaseList} edit={PurchaseEdit} create={PurchaseCreate} />
       <Resource name="items" list={ItemList} edit={ItemEdit} />
     </Admin>
   );
