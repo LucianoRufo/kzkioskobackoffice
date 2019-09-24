@@ -1,40 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Admin, Resource, ListGuesser } from 'react-admin';
-import { UserList } from './components/UserList';
-import jsonServerProvider from 'ra-data-json-server';
+import React from "react";
+import "./App.css";
+import { Admin, Resource } from "react-admin";
+import { PurchaseList } from "./components/PurchaseList";
+import { PurchaseEdit } from "./components/PurchaseEdit";
+import { ItemList } from "./components/ItemList";
+import { ItemEdit } from "./components/ItemEdit";
 
-//import dataProvider from "./firebaseConfig";
 import {
   FirebaseAuthProvider,
   FirebaseDataProvider,
   FirebaseRealTimeSaga
-} from 'react-admin-firebase';
+} from "react-admin-firebase";
 
 const config = {
-apiKey: "AIzaSyCVWzkMyM9ijA6uKmdxi1MHPVFPtFwggRs",
-authDomain: "kaizen-kiosko.firebaseapp.com",
-databaseURL: "https://kaizen-kiosko.firebaseio.com",
-projectId: "kaizen-kiosko",
-storageBucket: "kaizen-kiosko.appspot.com",
-messagingSenderId: "87283938323",
-appId: "1:87283938323:web:806257d756742ea1323be6",
+  apiKey: "AIzaSyCVWzkMyM9ijA6uKmdxi1MHPVFPtFwggRs",
+  authDomain: "kaizen-kiosko.firebaseapp.com",
+  databaseURL: "https://kaizen-kiosko.firebaseio.com",
+  projectId: "kaizen-kiosko",
+  storageBucket: "kaizen-kiosko.appspot.com",
+  messagingSenderId: "87283938323",
+  appId: "1:87283938323:web:806257d756742ea1323be6"
 };
-
 
 const options = {};
 const authProvider = FirebaseAuthProvider(config, options);
-const  dataProvider = FirebaseDataProvider(config, options);
-//const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
+const dataProvider = FirebaseDataProvider(config, options);
+const firebaseRealtime = FirebaseRealTimeSaga(dataProvider);
 
 function App() {
   return (
-    <Admin dataProvider={dataProvider} authProvider={authProvider}>
-        <Resource name="purchases" list={ListGuesser} />
-        <Resource name="items" list={ListGuesser} />
-        <Resource name="users" list={ListGuesser} />
-
+    <Admin
+      dataProvider={dataProvider}
+      authProvider={authProvider}
+      customSagas={[firebaseRealtime]}
+    >
+      <Resource name="purchases" list={PurchaseList} edit={PurchaseEdit} />
+      <Resource name="items" list={ItemList} edit={ItemEdit} />
     </Admin>
   );
 }
