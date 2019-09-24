@@ -10,6 +10,7 @@
     "react-admin": "^2.9.6",
     "react-admin-firebase": "^0.8.9",
     "react-dom": "^16.9.0",
+    "react-responsive": "^8.0.1",
     "react-scripts": "3.1.2"
   },
   "scripts": {

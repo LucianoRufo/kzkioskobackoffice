@@ -15,6 +15,7 @@ import {
   FirebaseDataProvider,
   FirebaseRealTimeSaga
 } from "react-admin-firebase";
+import Menu from "./components/Menu";
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -38,6 +39,7 @@ function App() {
     <Admin
       dataProvider={dataProvider}
       authProvider={authProvider}
+      menu = {Menu}
       customSagas={[firebaseRealtime]}
       customRoutes={CustomRoutes}
     >
