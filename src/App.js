@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Admin, Resource, UserMenu, AppBar, Layout, ShowGuesser } from "react-admin";
+import { Admin, Resource } from "react-admin";
 import { ItemList } from "./components/ItemList";
 import { ItemEdit } from "./components/ItemEdit";
 import { ItemCreate } from "./components/ItemCreate";
@@ -8,9 +8,7 @@ import { PurchaseList } from "./components/PurchaseList";
 import { PurchaseCreate } from "./components/PurchaseCreate";
 import { PurchaseEdit } from "./components/PurchaseEdit";
 import { UserList } from './components/UserList'
-import { UserEdit } from './components/UserEdit'
-import { withStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
+import  CustomRoutes  from './routes/CustomRoutes'
 
 import {
   FirebaseAuthProvider,
@@ -34,21 +32,6 @@ const authProvider = FirebaseAuthProvider(config, options);
 const dataProvider = FirebaseDataProvider(config, options);
 const firebaseRealtime = FirebaseRealTimeSaga(dataProvider);
 
-//Bar with profile
-const myCustomIconStyle = {
-  avatar: {
-    height: 30,
-    width: 30
-  }
-};
-const MyCustomIcon = withStyles(myCustomIconStyle)(({ classes }) => (
-  <Avatar className={classes.avatar} src="" />
-));
-
-const MyUserMenu = props => <UserMenu {...props} icon={<MyCustomIcon />} />;
-const MyAppBar = props => <AppBar {...props} userMenu={<MyUserMenu />} />;
-const MyLayout = props => <Layout {...props} appBar={MyAppBar} />;
-
 //<Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon}/>
 function App() {
   return (
@@ -56,6 +39,7 @@ function App() {
       dataProvider={dataProvider}
       authProvider={authProvider}
       customSagas={[firebaseRealtime]}
+      customRoutes={CustomRoutes}
     >
       <Resource
         name="purchases"
@@ -72,8 +56,8 @@ function App() {
       <Resource
         name="users"
         list={UserList}
-        edit={UserEdit}
         />
+
     </Admin>
   );
 }

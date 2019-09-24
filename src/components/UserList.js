@@ -5,7 +5,6 @@ export const UserList = props => (
     <List {...props} >
         <Datagrid rowClick="show">
             <TextField source="name" />
-            <TextField source="account" />
         </Datagrid>
     </List>
 );
