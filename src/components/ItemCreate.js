@@ -1,12 +1,12 @@
 import React from "react";
 import { Create, SimpleForm, TextInput, DateInput } from "react-admin";
 
-export const PurchaseCreate = props => (
+export const ItemCreate = props => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="Username" />
-      <TextInput source="Item name" />
-      <DateInput source="Purchase date" />
+      <TextInput source="Item Name" />
+      <TextInput source="Bar code" />
+      <DateInput source="Price" />
     </SimpleForm>
   </Create>
 );

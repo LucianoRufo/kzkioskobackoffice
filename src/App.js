@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
 import { Admin, Resource, UserMenu, AppBar, Layout } from "react-admin";
+import { ItemList } from "./components/ItemList";
+import { ItemEdit } from "./components/ItemEdit";
+import { ItemCreate } from "./components/ItemCreate";
 import { PurchaseList } from "./components/PurchaseList";
 import { PurchaseCreate } from "./components/PurchaseCreate";
 import { PurchaseEdit } from "./components/PurchaseEdit";
-import { ItemEdit } from "./components/ItemEdit";
-import { ItemList } from "./components/ItemList";
 
 import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -61,7 +62,12 @@ function App() {
         edit={PurchaseEdit}
         create={PurchaseCreate}
       />
-      <Resource name="items" list={ItemList} edit={ItemEdit} />
+      <Resource
+        name="items"
+        list={ItemList}
+        edit={ItemEdit}
+        create={ItemCreate}
+      />
     </Admin>
   );
 }
