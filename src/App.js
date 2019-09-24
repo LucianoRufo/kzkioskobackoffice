@@ -3,6 +3,8 @@ import './App.css';
 import { Admin, Resource, ListGuesser, EditGuesser, ShowGuesser, UserMenu, AppBar, Layout } from 'react-admin';
 import { UserList } from './components/UserList';
 import { ItemList } from './components/ItemList';
+import { ItemEdit } from './components/ItemEdit';
+import { ItemCreate } from './components/ItemCreate';
 import { PurchaseList } from './components/PurchaseList'
 import { PurchaseCreate } from './components/PurchaseCreate'
 import { PurchaseEdit } from './components/PurchaseEdit'
@@ -62,7 +64,7 @@ function App() {
       customSagas={[firebaseRealtime]}
     >
       <Resource name="purchases" list={PurchaseList} edit={PurchaseEdit} create={PurchaseCreate} />
-      <Resource name="items" list={ItemList} edit={ItemEdit} />
+      <Resource name="items" list={ItemList} edit={ItemEdit} create={ItemCreate} />
     </Admin>
   );
 }
